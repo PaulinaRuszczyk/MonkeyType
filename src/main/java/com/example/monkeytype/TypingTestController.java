@@ -30,7 +30,7 @@ public class TypingTestController {
                 view.addLetterToTextToType( enteredText, i);
                 view.modifyLetterColor(i, Color.ORANGE);
 
-            //i--;
+            //i--
         }else {
             System.out.println("Incorrect!");
             view.modifyLetterColor(i, Color.RED);
