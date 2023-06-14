@@ -53,6 +53,7 @@ public class TypingTestView {
         textToType.getChildren().clear();
         for (char c : text.toCharArray()) {
             Text letter = new Text(String.valueOf(c));
+            letter.setFill(Color.GRAY);
             textToType.getChildren().add(letter);
         }
     }
