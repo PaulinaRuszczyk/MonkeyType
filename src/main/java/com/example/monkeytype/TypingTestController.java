@@ -23,14 +23,23 @@ public class TypingTestController {
         String letter = String.valueOf(textToType.charAt(i));
 
         if (enteredText.equals(letter)) {
-            // Text entered matches the expected text
             System.out.println("Correct!");
             view.modifyLetterColor(i, Color.GREEN);
-        } else {
-            // Text entered does not match the expected text
+        } else if(i>0 && enteredText.equals(String.valueOf(textToType.charAt(i-1))) && !enteredText.equals(" ")){
+            System.out.println("Powtórzenie!");
+                view.addLetterToTextToType( enteredText, i);
+                view.modifyLetterColor(i, Color.ORANGE);
+
+            //i--;
+        }else {
             System.out.println("Incorrect!");
             view.modifyLetterColor(i, Color.RED);
         }
-        i++;
+        if(view.getTextToType().length()==i+1) {
+            view.setTextToType(model.getRandomWords(30));
+            i=0;
+        }
+        else
+            i++;
     }
 }

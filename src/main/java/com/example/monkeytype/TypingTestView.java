@@ -67,4 +67,8 @@ public class TypingTestView {
             letter.setFill(color);
         }
     }
+    public void addLetterToTextToType(String letter, int i) {
+        Text newLetter = new Text(letter);
+        textToType.getChildren().add(i, newLetter);
+    }
 }
