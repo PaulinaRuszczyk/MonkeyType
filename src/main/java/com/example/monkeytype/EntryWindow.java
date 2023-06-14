@@ -8,8 +8,10 @@ import javafx.scene.control.TextArea;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
+import javafx.scene.input.KeyCode;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
+import javafx.util.Duration;
 
 public class EntryWindow extends Application {
 
@@ -30,7 +32,6 @@ public class EntryWindow extends Application {
             String selectedTime = timeComboBox.getValue();
             openMainWindow(selectedLanguage,selectedTime);
         });
-
         // Info text area
         Label infoTextArea = new Label("tab+enter -> restart test \nctrl+shift+p -> pause\nesc -> end test");
 
@@ -41,6 +42,7 @@ public class EntryWindow extends Application {
         root.getChildren().addAll(languageComboBox,timeComboBox, startButton, infoTextArea);
 
         Scene scene = new Scene(root, 300, 200);
+
         primaryStage.setScene(scene);
         primaryStage.setTitle("Entry Window");
         primaryStage.show();
@@ -51,7 +53,8 @@ public class EntryWindow extends Application {
         Stage mainWindowStage = new Stage();
         // Pass the selected language to the main application window
 
-        MainWindow mainWindow = new MainWindow(language, time);
+        Duration duration = Duration.seconds(Integer.parseInt(time));
+        MainWindow mainWindow = new MainWindow(language, duration);
         mainWindow.start(mainWindowStage);
     }
 

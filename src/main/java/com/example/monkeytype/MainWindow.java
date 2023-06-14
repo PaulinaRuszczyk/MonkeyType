@@ -24,18 +24,21 @@ package com.example.monkeytype;
 
 
 import javafx.application.Application;
+import javafx.scene.Scene;
+import javafx.scene.input.KeyCode;
 import javafx.stage.Stage;
+import javafx.util.Duration;
 
 
 public class MainWindow extends Application {
     private String language;
-    private String time;
+    private Duration time;
 
     public MainWindow() {
         // Default constructor
     }
 
-    public MainWindow(String languageFileName, String time) {
+    public MainWindow(String languageFileName, Duration time) {
         this.language = languageFileName;
         this.time = time;
     }
@@ -47,7 +50,8 @@ public class MainWindow extends Application {
             System.exit(0);
         }
         String str = "dictionary/" + language + ".txt";
-        new TypingTestController(primaryStage, str);
+        TypingTestController typingControler=new TypingTestController(primaryStage, str, time);
+
         primaryStage.show();
     }
 
