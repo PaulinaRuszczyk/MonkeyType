@@ -1,19 +1,19 @@
 package com.example.monkeytype;
 
 import javafx.geometry.Pos;
+import javafx.scene.Node;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
+import javafx.scene.text.Text;
+import javafx.scene.text.TextFlow;
 import javafx.stage.Stage;
-
 
 public class TypingTestView {
     private Stage stage;
-    private Label textToType;
+    private TextFlow textToType;
     private TextArea userInput;
 
     public TypingTestView(Stage stage) {
@@ -26,7 +26,7 @@ public class TypingTestView {
 
         // Center panel with text to type and user input
         VBox centerPane = new VBox(10);
-        textToType = new Label("Text to type...");
+        textToType = new TextFlow();
         userInput = new TextArea();
         centerPane.getChildren().addAll(textToType, userInput);
         centerPane.setAlignment(Pos.CENTER);
@@ -38,11 +38,33 @@ public class TypingTestView {
         stage.setTitle("Typing Test");
     }
 
-    public Label getTextToType() {
-        return textToType;
+    public String getTextToType() {
+        StringBuilder textBuilder = new StringBuilder();
+        for (Node node : textToType.getChildren()) {
+            if (node instanceof Text) {
+                Text textNode = (Text) node;
+                textBuilder.append(textNode.getText());
+            }
+        }
+        return textBuilder.toString();
+    }
+
+    public void setTextToType(String text) {
+        textToType.getChildren().clear();
+        for (char c : text.toCharArray()) {
+            Text letter = new Text(String.valueOf(c));
+            textToType.getChildren().add(letter);
+        }
     }
 
     public TextArea getUserInput() {
         return userInput;
+    }
+
+    public void modifyLetterColor(int index, Color color) {
+        if (textToType != null && index >= 0 && index < textToType.getChildren().size()) {
+            Text letter = (Text) textToType.getChildren().get(index);
+            letter.setFill(color);
+        }
     }
 }
