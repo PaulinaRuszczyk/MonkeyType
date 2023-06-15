@@ -13,7 +13,6 @@ public class StatisticApp extends Application {
         StatisticView view = new StatisticView();
         StatisticsController controller = new StatisticsController(view);
 
-        // Example: Add sample data points
         controller.addDataPoint(5,100, 85);
         controller.addDataPoint(6,120, 90);
         controller.addDataPoint(7,130, 95);

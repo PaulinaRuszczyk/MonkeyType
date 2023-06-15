@@ -17,7 +17,6 @@ public class EntryWindow extends Application {
 
     @Override
     public void start(Stage primaryStage) {
-        // Language selection
         ComboBox<String> languageComboBox = new ComboBox<>();
         languageComboBox.getItems().addAll("english", "afrikaans", "albanian", "czech", "danish", "dutch", "estonian", "finnish", "italian", "japanese", "latvian", "lithuanian", "norwegian", "polish", "portugese", "slovak", "swedish", "turkish", "ukrainian");
         languageComboBox.setPromptText("Select a language");
@@ -25,17 +24,14 @@ public class EntryWindow extends Application {
         ComboBox<String> timeComboBox = new ComboBox<>();
         timeComboBox.getItems().addAll("15", "20", "45", "60", "90", "120", "300");
         timeComboBox.setPromptText("Select a time");
-        // Start button
         Button startButton = new Button("Start");
         startButton.setOnAction(event -> {
             String selectedLanguage = languageComboBox.getValue();
             String selectedTime = timeComboBox.getValue();
             openMainWindow(selectedLanguage,selectedTime);
         });
-        // Info text area
-        Label infoTextArea = new Label("tab+enter -> restart test \nctrl+shift+p -> pause\nesc -> end test");
+        Label infoTextArea = new Label("tab+enter -> restart test \nctrl+shift+p -> pause/resume\nesc -> end test");
 
-        // VBox layout
         VBox root = new VBox(10);
         root.setPadding(new Insets(20));
         root.setAlignment(Pos.CENTER);
@@ -49,9 +45,7 @@ public class EntryWindow extends Application {
     }
 
     private void openMainWindow(String language, String time) {
-        // Create a new window for the main application
         Stage mainWindowStage = new Stage();
-        // Pass the selected language to the main application window
 
         Duration duration = Duration.seconds(Integer.parseInt(time));
         MainWindow mainWindow = new MainWindow(language, duration);
